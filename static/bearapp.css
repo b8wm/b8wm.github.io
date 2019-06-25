@@ -19,7 +19,7 @@ html, body, #container {
   position: absolute;
   overflow: hidden;
   width: 100%;
-  height: calc(100% - 100px);
+  height: calc(100% - 60px);
   left: -100%;
   top: 0;
   margin: 0;
@@ -31,7 +31,7 @@ html, body, #container {
   position: absolute;
   overflow: hidden;
   width: 100%;
-  height: calc(100% - 100px);
+  height: calc(100% - 60px);
   left: 100%;
   top: 0;
   margin: 0;
@@ -102,14 +102,14 @@ html, body, #container {
 }
 
 #left-window-icon-i, #right-window-icon-i {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 #window-indicator {
   position: absolute;
   width: 50%;
-  height: 100px;
-  top: calc(100% - 100px);
+  height: 60px;
+  top: calc(100% - 60px);
   left: 50%;
   background-color: rgb(200, 200, 200);
   transition: left 0.1s;
