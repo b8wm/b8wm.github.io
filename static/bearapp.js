@@ -21,16 +21,16 @@ function initiate() {
     btn.style.width = getTextWidth("Clock Out", {'font-family': 'sans-serif', 'font-size': '200%'}) + "px";
     clockIn();
   }
-  document.getElementById("left-window-btn").addEventListener("mouseup", function() {
+  document.getElementById("left-window-btn").addEventListener("touchend", function() {
     leftWindowBtnUp();
   });
-  document.getElementById("right-window-btn").addEventListener("mouseup", function() {
+  document.getElementById("right-window-btn").addEventListener("touchend", function() {
     rightWindowBtnUp();
   });
-  document.getElementById("clock-btn").addEventListener("mousedown", function() {
+  document.getElementById("clock-btn").addEventListener("touchstart", function() {
     clockBtnDown();
   });
-  document.getElementById("clock-btn").addEventListener("mouseup", function() {
+  document.getElementById("clock-btn").addEventListener("touchend", function() {
     clockBtnUp();
   });
   setInterval(refresh, 100);
