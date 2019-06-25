@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./static/bearapp.css">
+    <script type="text/javascript" src="./static/bearapp.js" />
     <title>Bearapp</title>
   </head>
   <body>
-    Bearapp
+    <div id="container">
+      <div id="left-window">
+        <div id="clock-status">Not Clocked In</div>
+        <div id="clock-in-btn">Clock In</div>
+      </div>
+      <div id="right-window">
+        Calendar
+      </div>
+      <div id="window-base">
+        <div id="left-window-btn">
+          <div id="left-window-icon"><i class="material-icons" id="left-window-icon-i">schedule</i></div>
+        </div>
+        <div id="right-window-btn">
+          <div id="right-window-icon"><i class="material-icons" id="right-window-icon-i">event</i></div>
+        </div>
+        <div id="indicator"></div>
+      </div>
+    </div>
   </body>
 </html>
