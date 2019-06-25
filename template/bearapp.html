@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="apple-mobile-web-app-title" content="BEARapp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="./static/bearapp.css">
-    <script type="text/javascript" src="./static/bearapp.js" />
-    <title>Bearapp</title>
+    <link rel="stylesheet" href="../static/bearapp.css">
+    <script type="text/javascript" src="../static/bearapp.js"></script>
+    <title>BEARapp</title>
   </head>
-  <body>
+  <body onload="initiate()">
     <div id="container">
-      <div id="left-window">
-        <div id="clock-status">Not Clocked In</div>
-        <div id="clock-in-btn">Clock In</div>
+      <div id="left-window" class="focus-window">
+        <center>
+          <div id="clock-status"></div>
+          <div id="clock-btn">Clock In</div>
+      </center>
       </div>
       <div id="right-window">
         Calendar
@@ -23,7 +29,7 @@
         <div id="right-window-btn">
           <div id="right-window-icon"><i class="material-icons" id="right-window-icon-i">event</i></div>
         </div>
-        <div id="indicator"></div>
+        <div id="window-indicator" class="focus-window"></div>
       </div>
     </div>
   </body>
