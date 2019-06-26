@@ -28,23 +28,60 @@
   <body onload="initiate()">
     <div id="container">
       <div id="left-window" class="focus-window">
-        <center>
-          <div id="clock-status"></div>
-          <div id="clock-btn">Clock In</div>
-      </center>
+        <div class="window-container">
+          <center>
+            <div id="clock-status"></div>
+            <div id="clock-btn">Clock In</div>
+          </center>
+        </div>
       </div>
       <div id="right-window">
-        Calendar
+        <div class="window-container">
+          Calendar
+        </div>
       </div>
       <div id="window-base">
         <div id="left-window-btn">
-          <div id="left-window-icon"><i class="material-icons" id="left-window-icon-i">schedule</i></div>
+          <div id="left-window-icon">
+            <i class="material-icons focus-window-icon" id="left-window-icon-i">
+              schedule
+            </i>
+          </div>
         </div>
         <div id="right-window-btn">
-          <div id="right-window-icon"><i class="material-icons" id="right-window-icon-i">event</i></div>
+          <div id="right-window-icon">
+            <i class="material-icons" id="right-window-icon-i">
+              event
+            </i>
+          </div>
         </div>
         <div id="window-indicator" class="focus-window"></div>
       </div>
+      <div id="pop-up-screen" class="unfocus-pop-up-screen">
+        <div id="pop-up-window" class="unfocus-pop-up-window">
+          <div id="pop-up-top-bar">
+            <div id="pop-up-title"></div>
+            <div id="pop-up-exit">
+              <i id="pop-up-exit-i" class="material-icons">close</i>
+            </div>
+          </div>
+          <div id="pop-up-body"></div>
+        </div>
+      </div>
+    </div>
+    <div id="pop-up-states">
+      <!--
+      
+      <h1>this is a test</h1>
+      <p>this is some text to go along with the test</p>
+      
+      -->
+      <!--
+      
+      <h1>this is another test</h1>
+      <p>this is some text to go along with this next test</p>
+      
+      -->
     </div>
   </body>
 </html>
