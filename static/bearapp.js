@@ -4,7 +4,7 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 var nClose = false;
 var nnClose = false;
 
-const TOUCHSCREEN = true;
+const TOUCHSCREEN = false;
 var clockOutHTML;
 
 var oDownP, oUpP;
@@ -23,12 +23,12 @@ function initiate() {
   if (localStorage.getItem("clock") === ("false")) {
     btn.innerHTML = "Clock In";
     btn.style.backgroundColor = "#7FFF00";
-    btn.style.width = getTextWidth("Clock Out", {'font-family': 'sans-serif', 'font-size': '200%'}) + "px";
+    btn.style.width = getTextWidth("Clock Out", {'font-family': '"Lato", sans-serif', 'font-size': '200%'}) + "px";
   }
   else {
     btn.innerHTML = "Clock Out";
     btn.style.backgroundColor = "#F00";
-    btn.style.width = getTextWidth("Clock Out", {'font-family': 'sans-serif', 'font-size': '200%'}) + "px";
+    btn.style.width = getTextWidth("Clock Out", {'font-family': '"Lato", sans-serif', 'font-size': '200%'}) + "px";
     clockIn();
   }
   document.getElementById("left-window-btn").addEventListener(oUpP, leftWindowBtnUp);
@@ -61,7 +61,7 @@ function clockBtnDown() {
 function clockBtnUp() {
   var t = new Date();
   var btn = document.getElementById("clock-btn");
-  btn.style.width = getTextWidth("Clock Out", {'font-family': 'sans-serif', 'font-size': '200%'}) + "px";
+  btn.style.width = getTextWidth("Clock Out", {'font-family': '"Lato", sans-serif', 'font-size': '200%'}) + "px";
   if (localStorage.getItem("clock") === ("false")) {
     localStorage.setItem("clock", t.getTime());
     btn.innerHTML = "Clock Out";
@@ -101,12 +101,12 @@ function clockOut() {
   openPop("Clock Out", CLOCKOUTHTML);
 }
 function openPop(title, contents) {
-  document.getElementById("pop-up-screen").classList.remove("unfocus-pop-up-screen");
-  document.getElementById("pop-up-window").classList.remove("unfocus-pop-up-window");
-  document.getElementById("pop-up-screen").style.display = "block";
-  document.getElementById("pop-up-window").style.display = "block";
   document.getElementById("pop-up-title").innerHTML = title;
   document.getElementById("pop-up-body").innerHTML = contents;
+  document.getElementById("pop-up-screen").style.display = "block";
+  document.getElementById("pop-up-window").style.display = "block";
+  document.getElementById("pop-up-screen").classList.remove("unfocus-pop-up-screen");
+  document.getElementById("pop-up-window").classList.remove("unfocus-pop-up-window");
 }
 function closePop() {
   if (!nClose) {
