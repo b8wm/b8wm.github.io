@@ -1,10 +1,11 @@
 var isClocked = false;
+var pressable = true;
 var currTS;
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var nClose = false;
 var nnClose = false;
 
-const TOUCHSCREEN = false;
+const TOUCHSCREEN = true;
 var clockOutHTML;
 
 var oDownP, oUpP;
@@ -14,23 +15,29 @@ else { oDownP="mousedown";oUpP="mouseup"; }
 function initiate() {
   var t = new Date(); // <<---- INSERT CURRENT TIME FROM DATABASE HERE
   var btn = document.getElementById("clock-btn");
+  var txt = document.getElementById("clock-btn-txt");
   var duration = document.getElementById("duration");
   currTS = t.getTime();
-  CLOCKOUTHTML = findComments(document.getElementById("pop-up-states"))[1].nodeValue;
+  CLOCKOUTHTML = findComments(document.getElementById("pop-up-states"))[0].nodeValue;
   if (localStorage.getItem("clock") === null) {
     localStorage.setItem("clock", "false");
   }
   if (localStorage.getItem("clock") === ("false")) {
-    btn.innerHTML = "Clock In";
+    isClocked = false;
+    txt.innerHTML = "Clock In";
     btn.style.backgroundColor = "#7FFF00";
-    btn.style.width = getTextWidth("Clock Out", {'font-family': '"Lato", sans-serif', 'font-size': '200%'}) + "px";
+    btn.style.width = getTextWidth("Clock Out", {'font-family': '"Raleway", sans-serif', 'font-size': '200%'}) + "px";
   }
   else {
-    btn.innerHTML = "Clock Out";
+    isClocked = true;
+    txt.innerHTML = "Clock Out";
     btn.style.backgroundColor = "#F00";
-    btn.style.width = getTextWidth("Clock Out", {'font-family': '"Lato", sans-serif', 'font-size': '200%'}) + "px";
+    btn.style.width = getTextWidth("Clock Out", {'font-family': '"Raleway", sans-serif', 'font-size': '200%'}) + "px";
     clockIn();
   }
+  document.getElementById("container").addEventListener(oDownP, function() {
+      edrop_close(edrop_which);
+  });
   document.getElementById("left-window-btn").addEventListener(oUpP, leftWindowBtnUp);
   document.getElementById("right-window-btn").addEventListener(oUpP, rightWindowBtnUp);
   document.getElementById("clock-btn").addEventListener(oDownP, clockBtnDown);
@@ -56,26 +63,53 @@ function rightWindowBtnUp() {
   document.getElementById("left-window-icon-i").classList.remove("focus-window-icon");
 }
 function clockBtnDown() {
-  document.getElementById("clock-btn").style.width = "90%";
+  if (pressable) {
+    document.getElementById("clock-btn").style.width = "90%";
+  } else {
+    requestAnimationFrame(function() { wiggleBtn(5, 1.2, 0, 0); });
+  }
 }
 function clockBtnUp() {
-  var t = new Date();
+  if (pressable) {
+    var t = new Date();
+    var btn = document.getElementById("clock-btn");
+    var txt = document.getElementById("clock-btn-txt");
+    btn.style.width = getTextWidth("Clock Out", {'font-family': '"Raleway", sans-serif', 'font-size': '200%'}) + "px";
+    if (localStorage.getItem("clock") === ("false")) {
+      localStorage.setItem("clock", t.getTime());
+      txt.innerHTML = "Clock Out";
+      btn.style.backgroundColor = "#F00";
+      clockIn();
+    }
+    else {
+      localStorage.setItem("start", localStorage.getItem("clock"));
+      localStorage.setItem("end", t.getTime());
+      localStorage.setItem("clock", "false");
+      txt.innerHTML = "Clock In";
+      btn.style.backgroundColor = "#7FFF00";
+      clockOut();
+    }
+  }
+}
+function wiggleBtn(a, f, d, t) {
   var btn = document.getElementById("clock-btn");
-  btn.style.width = getTextWidth("Clock Out", {'font-family': '"Lato", sans-serif', 'font-size': '200%'}) + "px";
-  if (localStorage.getItem("clock") === ("false")) {
-    localStorage.setItem("clock", t.getTime());
-    btn.innerHTML = "Clock Out";
-    btn.style.backgroundColor = "#F00";
-    clockIn();
+  var txt = document.getElementById("clock-btn-txt");
+  t++;
+  d = a*Math.sin(t*f);
+  btn.style.transform = "rotate("+d+"deg)";
+  txt.style.transform = "rotate("+(d/-2)+"deg)";
+  if (t < 5*Math.PI) {
+    requestAnimationFrame(function() { wiggleBtn(a, f, d, t); });
+  } else {
+    btn.style.transform = "rotate(0deg)";
+    txt.style.transform = "rotate(0deg)";
   }
-  else {
-    localStorage.setItem("start", localStorage.getItem("clock"));
-    localStorage.setItem("end", t.getTime());
-    localStorage.setItem("clock", "false");
-    btn.innerHTML = "Clock In";
-    btn.style.backgroundColor = "#7FFF00";
-    clockOut();
-  }
+}
+function showJobSelect() {
+  initDropdown(0);
+}
+function hideJobSelect() {
+  deleteDropdown();
 }
 function refresh() {
   var t = new Date();
@@ -95,9 +129,13 @@ function refresh() {
   }
 }
 function clockIn() {
-  // nothing yet
+  // send clock in to server
+  disableClockOut();
+  showJobSelect();
+  
 }
 function clockOut() {
+  hideJobSelect();
   openPop("Clock Out", CLOCKOUTHTML);
 }
 function openPop(title, contents) {
@@ -105,8 +143,10 @@ function openPop(title, contents) {
   document.getElementById("pop-up-body").innerHTML = contents;
   document.getElementById("pop-up-screen").style.display = "block";
   document.getElementById("pop-up-window").style.display = "block";
-  document.getElementById("pop-up-screen").classList.remove("unfocus-pop-up-screen");
-  document.getElementById("pop-up-window").classList.remove("unfocus-pop-up-window");
+  setTimeout(function() {
+    document.getElementById("pop-up-screen").classList.remove("unfocus-pop-up-screen");
+    document.getElementById("pop-up-window").classList.remove("unfocus-pop-up-window");
+  }, 5);
 }
 function closePop() {
   if (!nClose) {
@@ -129,6 +169,15 @@ function cancelClosePop() {
   if (!nnClose) {
     nClose = true;
   } else { nnClose = false; }
+}
+function disableClockOut() {
+  pressable = false;
+  document.getElementById("clock-btn").classList.add("disabled-btn");
+}
+function enableClockOut() {
+  
+  pressable = true;
+  document.getElementById("clock-btn").classList.remove("disabled-btn");
 }
 function getTextWidth(text, css) {
   var e = $('<span></span>'); // dummy element

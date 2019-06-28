@@ -20,10 +20,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../static/bearapp.css">
+    <link rel="stylesheet" href="../static/dropdown.css">
     <script type="text/javascript" src="../static/bearapp.js"></script>
+    <script type="text/javascript" src="../static/dropdown.js"></script>
     <title>BEARapp</title>
   </head>
   <body onload="initiate()">
@@ -32,13 +34,14 @@
         <div class="window-container">
           <center>
             <div id="clock-status"></div>
-            <div id="clock-btn">Clock In</div>
+            <div id="clock-btn"><div id="clock-btn-txt">Clock In</div></div>
+            <div id="job-drop"></div>
           </center>
         </div>
       </div>
       <div id="right-window">
         <div class="window-container">
-          Calendar
+          
         </div>
       </div>
       <div id="window-base">
@@ -72,16 +75,10 @@
     </div>
     <div id="pop-up-states">
       <!--
-      
-      <h1>this is a test</h1>
-      <p>this is some text to go along with the test</p>
-      
-      -->
-      <!--
-      
-      <h1>this is another test</h1>
-      <p>this is some text to go along with this next test</p>
-      
+      <center>
+        <h1>What did you do today?</h1>
+        <p>Enter a description of what you accomplished.</p>
+      </center>
       -->
     </div>
   </body>
