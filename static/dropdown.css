@@ -63,7 +63,8 @@ xmp {
 }
 
 .edrop-tbox {
-
+  
+  -webkit-appearance: none;
   box-sizing: border-box;
   width: 100%;
   padding: 8px;
