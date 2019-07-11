@@ -5,7 +5,7 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 var nClose = false;
 var nnClose = false;
 
-const TOUCHSCREEN = true;
+const TOUCHSCREEN = false;
 var clockOutHTML;
 
 var oDownP, oUpP;
@@ -35,9 +35,6 @@ function initiate() {
     btn.style.width = getTextWidth("Clock Out", {'font-family': '"Raleway", sans-serif', 'font-size': '200%'}) + "px";
     clockIn();
   }
-  document.getElementById("container").addEventListener(oDownP, function() {
-      edrop_close(edrop_which);
-  });
   document.getElementById("left-window-btn").addEventListener(oUpP, leftWindowBtnUp);
   document.getElementById("right-window-btn").addEventListener(oUpP, rightWindowBtnUp);
   document.getElementById("clock-btn").addEventListener(oDownP, clockBtnDown);
@@ -97,7 +94,7 @@ function wiggleBtn(a, f, d, t) {
   t++;
   d = a*Math.sin(t*f);
   btn.style.transform = "rotate("+d+"deg)";
-  txt.style.transform = "rotate("+(d/-2)+"deg)";
+  txt.style.transform = "rotate("+(d*-0.8)+"deg)";
   if (t < 5*Math.PI) {
     requestAnimationFrame(function() { wiggleBtn(a, f, d, t); });
   } else {
@@ -106,10 +103,29 @@ function wiggleBtn(a, f, d, t) {
   }
 }
 function showJobSelect() {
-  initDropdown(0);
+  document.getElementById("job-drop").innerHTML = buildSelect();
+  educateDropdown(document.getElementById("job-select"));
+  document.getElementById("job-select").addEventListener("selected", enableClockOut);
+  document.getElementById("job-select").addEventListener("deselected", disableClockOut);
 }
 function hideJobSelect() {
-  deleteDropdown();
+  document.getElementById("job-drop").innerHTML = "";
+}
+function buildSelect() {
+  return '<select name="animal" data-placeholder="Select a Pet" id="job-select" class="smart-select smart-select-mobileo">'
+         + '<option value="cat">Cat</option>'
+         + '<option value="dog">Dog</option>'
+         + '<option value="mouse">Mouse</option>'
+         + '<option value="rat">Rat</option>'
+         + '<option value="ferret">Ferret</option>'
+         + '<option value="hamster">Hamster</option>'
+         + '<option value="fish">Fish</option>'
+         + '<option value="horse">Horse</option>'
+         + '<option value="pony">Pony</option>'
+         + '<option value="turtle">Turtle</option>'
+         + '<option value="snake">Snake</option>'
+         + '<option value="lizard">Lizard</option>'
+       + '</select>';
 }
 function refresh() {
   var t = new Date();

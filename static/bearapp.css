@@ -75,6 +75,12 @@ html, body, #container {
   padding: 5%;
 }
 
+#job-select {
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: left;
+}
+
 #window-base {
   position: absolute;
   width: calc(100% - 20px);

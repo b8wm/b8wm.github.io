@@ -1,0 +1,84 @@
+.space-ssel {
+  display: inline-block;
+  overflow: visible;
+}
+
+.select-ssel {
+  display: inline-block;
+  position: absolute;
+  overflow: hidden;
+  border: solid 1px #DDD;
+  border-radius: 7px;
+  background-color: #F9F9F9;
+  font-family: sans-serif;
+  font-weight: 100;
+  color: #444;
+  transition: height 0.2s;
+}
+
+.select-top-ssel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: inherit;
+}
+
+.input-ssel {
+  position: relative;
+  box-sizing: border-box;
+  overflow: visible;
+  width: 100%;
+  -webkit-appearance: none;
+  border: none;
+  padding: 10px;
+  background-color: inherit;
+  font-size: 200%;
+  font-weight: 100;
+  outline: none !important;
+}
+
+.input-ssel::placeholder {
+  color: #CCC;
+  padding-left: 5px;
+  font-style: normal;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.select-body-ssel {
+  background-color: inherit;
+  width: 100%;
+  max-height: 60vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.option-ssel {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 10px 15px;
+  transition: background-color 0.2s;
+}
+
+.option-down-ssel {
+  background-color: #EEE;
+}
+
+.no-results-ssel {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: inherit;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  padding: 10px 15px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
